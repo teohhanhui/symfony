@@ -272,6 +272,9 @@ class Response
             $this->setContent(null);
             $headers->remove('Content-Type');
             $headers->remove('Content-Length');
+
+            // Prevent PHP from adding a default Content-Type
+            ini_set('default_mimetype', '');
         } else {
             // Content-type based on the Request
             if (!$headers->has('Content-Type')) {
